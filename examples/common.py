@@ -1,4 +1,4 @@
-"""Shared helpers for Phase 11 end-to-end examples."""
+"""Shared helpers for end-to-end examples."""
 
 from __future__ import annotations
 

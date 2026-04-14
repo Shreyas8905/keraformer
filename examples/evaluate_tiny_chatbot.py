@@ -1,4 +1,4 @@
-"""Phase 11 example: evaluate the tiny chatbot checkpoint on toy prompts."""
+"""evaluate the tiny chatbot checkpoint on toy prompts."""
 
 from __future__ import annotations
 

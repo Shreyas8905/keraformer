@@ -1,4 +1,4 @@
-"""Phase 11 example: interactive chat loop using trained tiny checkpoint."""
+"""interactive chat loop using trained tiny checkpoint."""
 
 from __future__ import annotations
 

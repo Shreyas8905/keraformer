@@ -11,5 +11,5 @@ dist/
 htmlcov/
 .env
 .env.*
-artifacts_phase11/
+artifacts/
 project.md

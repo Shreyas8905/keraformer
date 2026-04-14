@@ -1,4 +1,4 @@
-"""Phase 11 example: train a tiny next-token chatbot head end-to-end.
+"""train a tiny next-token chatbot head end-to-end.
 
 Flow:
 1) Data ingestion from a toy dialogue corpus
