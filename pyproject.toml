@@ -7,8 +7,17 @@ name = "keraformer"
 version = "0.1.0"
 description = "Modular Keras transformer building blocks"
 requires-python = ">=3.10"
+dependencies = [
+	"keras>=3.3",
+	"numpy>=1.26",
+	"transformers>=4.40",
+	"einops>=0.8",
+]
 
 [project.optional-dependencies]
+tf = ["tensorflow>=2.16"]
+jax = ["jax>=0.4", "jaxlib>=0.4"]
+torch = ["torch>=2.2"]
 dev = ["pytest", "black", "ruff"]
 
 [tool.setuptools]
@@ -16,3 +25,4 @@ include-package-data = true
 
 [tool.setuptools.packages.find]
 include = ["keraformer*"]
+
