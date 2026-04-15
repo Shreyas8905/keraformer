@@ -188,8 +188,6 @@ def perplexity(logits: np.ndarray, targets: np.ndarray, mask: Optional[np.ndarra
     
     # Get target probabilities
     targets_flat = targets.reshape(-1)
-    logits_flat = logits.reshape(-1, vocab_size)
-    
     target_probs = np.maximum(probs.reshape(-1, vocab_size)[np.arange(len(targets_flat)), targets_flat], 1e-10)
     cross_entropy = -np.log(target_probs)
     

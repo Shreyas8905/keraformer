@@ -142,6 +142,16 @@ python -m examples.evaluate_tiny_chatbot
 python -m examples.chat_tiny_chatbot
 ```
 
+### Contributor Lint Check
+
+If you want to lint a single file or a directory before sending a contribution, use the helper below:
+
+```bash
+python tests/lint_file.py path/to/file_or_directory
+```
+
+The repository also includes a pull request lint gate in `.github/workflows/pr-lint.yml` that runs Ruff on incoming PRs.
+
 ## Caution and Contribution Policy
 
 This repository was built by a single developer and may contain bugs, numerical edge cases, and implementation flaws.

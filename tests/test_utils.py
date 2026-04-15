@@ -25,23 +25,18 @@ from keraformer.utils import (
     save_checkpoint,
     load_checkpoint,
     get_checkpoint_info,
-    find_latest_checkpoint,
     compare_checkpoints,
     # Data loading
     Dataset,
     DataLoader,
     pad_sequences,
-    create_batches,
     create_autoregressive_dataset,
     create_mask_for_padding,
     create_causal_mask,
-    batch_size_aware_pack,
-    # Metrics
     MetricsTracker,
     accuracy,
     perplexity,
     bleu_score,
-    f1_score,
     top_k_accuracy,
     # Visualization
     plot_attention_heads,

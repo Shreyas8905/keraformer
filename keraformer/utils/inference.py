@@ -1,7 +1,7 @@
 """Inference utilities for text generation and model interaction."""
 
 import numpy as np
-from typing import Optional, Tuple, List, Dict, Any, Callable
+from typing import Tuple
 
 
 def greedy_decode(
@@ -26,7 +26,6 @@ def greedy_decode(
         Generated token ids of shape (max_length,) or (batch, max_length)
     """
     batch_size = logits.shape[0] if len(logits.shape) > 1 else 1
-    vocab_size = logits.shape[-1]
     
     # Initialize output sequence
     is_batched = len(logits.shape) > 1
@@ -65,10 +64,7 @@ def beam_search(
         - beam_sequences: shape (beam_width, max_length) top-k sequences
         - beam_scores: shape (beam_width,) normalized scores
     """
-    vocab_size = logits.shape[-1]
-    
     # Get top-k tokens
-    log_probs = np.log(np.maximum(np.exp(logits) / np.sum(np.exp(logits)), 1e-10))
     top_logits, top_indices = np.sort(logits)[::-1][:beam_width], np.argsort(logits)[::-1][:beam_width]
     
     beam_sequences = np.expand_dims(top_indices, axis=1)  # (beam_width, 1)
@@ -144,7 +140,7 @@ def top_k_sampling(
     # Get top-k
     is_batched = len(logits.shape) > 1
     if is_batched:
-        top_k_logits, top_k_indices = np.sort(scaled_logits)[:, -k:], np.argsort(scaled_logits)[:, -k:]
+        top_k_indices = np.argsort(scaled_logits)[:, -k:]
         # Create mask and set other logits to -inf
         mask = np.full_like(scaled_logits, -np.inf)
         batch_size = scaled_logits.shape[0]
@@ -152,7 +148,6 @@ def top_k_sampling(
             mask[i, top_k_indices[i, :]] = scaled_logits[i, top_k_indices[i, :]]
         filtered_logits = mask
     else:
-        top_k_logits = np.sort(scaled_logits)[-k:]
         top_k_indices = np.argsort(scaled_logits)[-k:]
         mask = np.full_like(scaled_logits, -np.inf)
         mask[top_k_indices] = scaled_logits[top_k_indices]

@@ -283,7 +283,6 @@ def batch_size_aware_pack(
     
     batches = []
     current_batch = []
-    current_tokens = 0
     
     for seq in sorted_seqs:
         seq_len = len(seq)
@@ -292,12 +291,10 @@ def batch_size_aware_pack(
         
         if total_tokens <= target_batch_tokens or not current_batch:
             current_batch.append(seq)
-            current_tokens = total_tokens
         else:
             if current_batch:
                 batches.append(pad_sequences(current_batch, pad_value=pad_token_id))
             current_batch = [seq]
-            current_tokens = seq_len
     
     if current_batch:
         batches.append(pad_sequences(current_batch, pad_value=pad_token_id))
